@@ -1,0 +1,109 @@
+{% extends 'EcommerceCatalogAdminBundle::layout.html.twig' %}
+
+
+{% form_theme form _self %}
+
+{% block translatable_field_row %}
+{% spaceless %}
+  <div>
+    {{ form_label(form) }}
+    {{ form_errors(form) }}
+    {{ block('translatable_widget') }}
+  </div>
+{% endspaceless %}
+{% endblock translatable_field_row %}
+
+
+{% block translatable_widget %}
+{% spaceless %}
+  {% if compound %}
+    {{ block('translatable_widget_compound') }}
+  {% else %}
+    {{ block('form_widget_simple') }}
+  {% endif %}
+{% endspaceless %}
+{% endblock translatable_widget %}
+
+
+{% block translatable_widget_compound %}
+{% spaceless %}
+  <div {{ block('widget_container_attributes') }}>x
+    {% if form.parent is empty %}
+      {{ form_errors(form) }}
+    {% endif %}
+    {{ block('translatable_rows') }}
+    {{ form_rest(form) }}
+  </div>
+{% endspaceless %}
+{% endblock translatable_widget_compound %}
+
+
+{% block translatable_rows %}
+{% spaceless %}
+  <ul>
+  {% for child in form %}
+    {{ block('translatable_row_child') }}
+  {% endfor %}
+  </ul>
+{% endspaceless %}
+{% endblock translatable_rows %}
+
+{% block translatable_row_child %}
+  {% spaceless %}
+    <li>
+      {{ form_label(child) }}
+      {{ form_errors(child) }}
+      {{ form_widget(child) }}
+    </li>
+  {% endspaceless %}
+{% endblock translatable_row_child %}
+
+{% set form_groups = product_manager.getProductFormGroups(product.getType) %}
+
+{% block content %}
+
+  <div class="product-form">
+    {{ form_start(form, { 'attr': { 'novalidate': 'novalidate' } }) }}
+    <div class="tabbable">
+
+      <ul class="nav nav-tabs">
+        {%- for name, fields in form_groups %}
+
+          <li class="{% if loop.first %}active{% endif %}">
+            <a href="#group_{{ loop.index }}" data-toggle="tab">
+              {{- name|trans({}, 'ecommerce') -}}
+            </a>
+          </li>
+
+        {%- endfor %}
+
+      </ul>
+
+
+      <div class="tab-content">
+        {%- for name, fields in form_groups %}
+
+          <div class="tab-pane{% if loop.first %} active{% endif %}" id="group_{{ loop.index }}">
+            <fieldset>
+              <div class="form-group">
+                {%- if name != false %}
+
+                  <h3>{{ name|raw|trans({}, 'ecommerce') }}</h3>
+                {%- endif %}
+{#                {%- for field in form %}#}
+                {%- for field in fields %}
+
+                    {{ form_row(form[field]) }}
+                {%- endfor %}
+
+              </div>
+            </fieldset>
+          </div>
+        {%- endfor %}
+
+      </div>
+    </div>
+    {{ form_end(form) }}
+  </div>
+
+{% endblock content %}

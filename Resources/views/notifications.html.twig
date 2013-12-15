@@ -1,0 +1,19 @@
+    {% set flash_bag = app.session.flashbag.all() -%}
+    {% if flash_bag|length > 0 -%}
+      <div id="notifications" class="notifications">
+        {%- for type, type_messages in flash_bag -%}{%- for flash_type_messages in type_messages %}
+
+          <div class="alert alert-{{ type }}">
+            <ul class="unstyled">
+              {%- for message in flash_type_messages %}
+
+              <li>{{ message }}</li>
+
+              {%- endfor %}
+            </ul>
+          </div>
+        {%- endfor %}{% endfor %}
+
+      </div>
+
+    {% endif -%}

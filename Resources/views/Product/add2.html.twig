@@ -1,0 +1,30 @@
+{% extends 'EcommerceCatalogAdminBundle::layout.html.twig' %}
+
+
+{% form_theme form _self %}
+
+{% block _product_create_name_widget2 %}
+  {% spaceless %}
+    {% set type = type|default('text') %}
+    <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value.get('name') }}" {% endif %}/>
+  {% endspaceless %}
+{% endblock _product_create_name_widget2 %}
+
+{% block content %}
+
+  <div class="product-form">
+    {{ form_start(form, { 'attr': { 'novalidate': 'novalidate' } }) }}
+    <div class="">
+      <div class="">
+        {%- for name, field in form %}
+
+          {{ form_widget(field) }}
+
+        {%- endfor %}
+
+      </div>
+    </div>
+    {{ form_end(form) }}
+  </div>
+
+{% endblock content %}

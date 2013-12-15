@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<routes xmlns="http://symfony.com/schema/routing"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
+
+    <route id="ecommerce_catalog_admin_products" pattern="/products/">
+        <default key="_controller">ecommerce_catalog_admin.product_controller:indexAction</default>
+        <!--<default key="_controller">EcommerceCatalogAdminBundle:Product:index</default>-->
+    </route>
+
+    <route id="ecommerce_catalog_admin_product_create" pattern="/products/add" methods="GET">
+        <default key="_controller">ecommerce_catalog_admin.product_controller:addAction</default>
+        <!--<default key="_controller">EcommerceCatalogAdminBundle:Product:add</default>-->
+    </route>
+
+    <route id="ecommerce_catalog_admin_product_add" pattern="/products/add" methods="POST">
+        <default key="_controller">ecommerce_catalog_admin.product_controller:addAction</default>
+        <!--<default key="_controller">EcommerceCatalogAdminBundle:Product:add</default>-->
+    </route>
+
+    <route id="ecommerce_catalog_admin_product_edit" pattern="/products/{id}/edit" methods="GET">
+        <default key="_controller">ecommerce_catalog_admin.product_controller:editAction</default>
+    </route>
+
+    <route id="ecommerce_catalog_admin_product_update" pattern="/products/{id}/edit" methods="POST">
+        <default key="_controller">ecommerce_catalog_admin.product_controller:editAction</default>
+    </route>
+</routes>

@@ -1,0 +1,59 @@
+{% extends 'EcommerceCatalogAdminBundle::layout.html.twig' %}
+
+
+{% form_theme grouped_form.form _self %}
+
+{% block _product_create_name_widget %}
+  {% spaceless %}
+    {% set type = type|default('text') %}
+    <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value.get('name') }}" {% endif %}/>
+  {% endspaceless %}
+{% endblock _product_create_name_widget %}
+
+{% block content %}
+
+  <div class="product-form">
+    {{ form_start(grouped_form.form, { 'attr': { 'novalidate': 'novalidate' } }) }}
+    <div class="tabbable">
+      <ul class="nav nav-tabs">
+        {%- for name, fields in grouped_form.groups %}
+
+          <li class="{% if loop.first %}active{% endif %}">
+            <a href="#group_{{ loop.index }}" data-toggle="tab">
+              {{- name|trans -}}
+            </a>
+          </li>
+
+        {%- endfor %}
+
+      </ul>
+
+      <div class="tab-content">
+        {%- for name, fields in grouped_form.groups %}
+
+          <div class="tab-pane{% if loop.first %} active{% endif %}" id="group_{{ loop.index }}">
+            <fieldset>
+              <div class="form-group">
+                {%- if name != false %}
+
+                  <h3>{{ name|raw|trans({}, 'ecommerce') }}</h3>
+                {%- endif %}
+                {%- for field_name in fields %}
+                  {%- if grouped_form.form[field_name] is defined %}
+
+
+                    {{ form_row(grouped_form.form[field_name])}}
+                  {%- endif -%}
+                {%- endfor %}
+
+              </div>
+            </fieldset>
+          </div>
+        {%- endfor %}
+
+      </div>
+    </div>
+    {{ form_end(grouped_form.form) }}
+  </div>
+
+{% endblock content %}

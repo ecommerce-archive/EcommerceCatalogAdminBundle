@@ -1,0 +1,23 @@
+{% extends 'EcommerceCatalogAdminBundle::layout.html.twig' %}
+
+{% block content %}
+
+  <div id="ecommerce-admin-products">
+    <h1>Products products products products products</h1>
+
+    <a href="{{ path('ecommerce_catalog_admin_product_add') }}">Add</a>
+
+    {% if products|length > 0 %}
+    <div>
+      <ul>
+    {% for product in products %}
+      <li>{#{{ product.identifier }}#} {{ product.getProductReference().getProduct().get('name') }} <a href="{{ path('ecommerce_catalog_admin_product_edit', { 'id': product.getNodename() }) }}">Edit</a></li>
+    {% endfor %}
+      </ul>
+    </div>
+    {% else %}
+    <p>No products found</p>
+    {% endif %}
+  </div>
+
+{% endblock content %}

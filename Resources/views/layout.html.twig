@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+{% spaceless %}
+  <head>
+    <meta charset="utf-8" />
+    <title>{% block title %}Ecommerce Catalog Admin{% endblock %}</title>
+
+    {%- stylesheets '@EcommerceCatalogAdminBundle/Resources/less/style.less' filter='lessphp,?yui_css' output="css/catalog_admin.css" package="catalog_admin" -%}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+
+    {% endstylesheets -%}
+
+    {% block head %}{% endblock %}
+  </head>
+{% endspaceless %}
+
+<body>
+<div class="container">
+  {%- if not hide_header|default(false) %}
+
+  <header class="header">
+    <div class="header-inner">
+      <div class="nav-container">
+        <ul class="nav nav-global">
+          <li>
+            <a href="{{ path('ecommerce_catalog_admin_products') }}"><i class="ion-android-promotion"></i><span>Products</span></a>
+          </li>
+          <li class="has-sub-nav child-selected">
+            <a href="#"><i class="ion-ios7-gear"></i><span>Configuration</span><i class="ion-arrow-down-b"></i></a>
+            <ul class="nav">
+              <li class="selected"><a href="#">{#<i class="ion-android-mixer"></i>#}<span>Product types</span></a></li>
+              <li><a href="#">{#<i class="ion-android-storage"></i>#}<span>Product properties</span></a></li>
+            </ul>
+          </li>
+
+
+        </ul>
+
+        <a href="#" class="nav-dropdown-link"><i class="ion-navicon-round"></i></a>
+
+        <div class="nav-dropdown-wrapper">
+          <ol class="nav nav-dropdown">
+          </ol>
+        </div>
+
+
+    {#
+    <div class="header-account">
+      <ul class="inline unstyled">
+        <li class="header-user">{{ app.user.firstname }}</li>
+        <li class="header-logout"><a href="{{ logout_path('app') }}"><i class="ion-log-in"></i></a></li>
+      </ul>
+    </div>
+
+    <nav class="nav-main">
+      <ul>
+        <li class="section{% if false %} selected{% endif %}">
+          <a href="{{ path('ecommerce_catalog_admin_products') }}"><i class="ion-speedometer"></i><span>Dashboard</span></a>
+        </li>
+        <li class="section{% if false %} selected{% endif %}">
+          <a href="{{ path('ecommerce_catalog_admin_products') }}"><i class="ion-ios7-people"></i><span>Benutzerkonten</span></a>
+{#          <ul>
+            <li><a href="{{ path('ecommerce_catalog_admin_products') }}"><span>Liste</span></a></li>
+            <li><a href="{{ path('ecommerce_catalog_admin_products') }}"><span>Liste</span></a></li>
+          </ul># }
+        </li>
+        <li class="section{% if false %} selected{% endif %}">
+          <a href="{{ path('ecommerce_catalog_admin_products') }}"><i class="{#ion-bag# } ion-pricetags"></i><span>Produkte</span></a>
+          <ul{% if false %} style="display: none"{% endif %}>
+            <li><a href="{{ path('ecommerce_catalog_admin_products') }}"><span>Styles</span></a></li>
+            <li{% if false %} class="selected"{% endif %}><a href="{{ path('ecommerce_catalog_admin_products') }}"><span>Mietartikel</span></a></li>
+          </ul>
+        </li>
+        <li class="section">
+          <a href="{{ path('ecommerce_catalog_admin_products') }}"><i class="{#ion-search # }ion-card"></i><span>Bestellungen</span></a>
+          <ul{% if false  %} style="display: none"{% endif %}>
+            <li{% if false %} class="selected"{% endif %}><a href="{{ path('ecommerce_catalog_admin_products') }}"><span>Liste</span></a></li>
+            <li{% if false %} class="selected"{% endif %}><a href="{{ path('ecommerce_catalog_admin_products') }}"><span>Zu versenden</span></a></li>
+            <li{% if false %} class="selected"{% endif %}><a href="{{ path('ecommerce_catalog_admin_products') }}"><span>Wareneingang</span></a></li>
+          </ul>
+        </li>
+        <li class="section">
+          <a href="{{ logout_path('app') }}"><i class="ion-log-in"></i><span>Abmelden</span></a>
+        </li>
+      </ul>
+    </nav>
+#}
+
+      </div>
+    </div>
+  </header>
+
+  {% endif %}
+
+  <div id="main" class="main" role="main">
+    {%- block notification_block %}{% include 'EcommerceCatalogAdminBundle::notifications.html.twig' %}{% endblock notification_block %}
+
+    {% block content %}{% endblock %}
+
+  </div>
+</div>
+
+{% javascripts
+'@EcommerceCatalogAdminBundle/Resources/js/lib/jquery.min.js'
+'@EcommerceCatalogAdminBundle/Resources/js/lib/verge.min.js'
+'@EcommerceCatalogAdminBundle/Resources/js/app.js'
+package="js_app" output='js/app.js' %}
+<script src="{{ asset_url }}"></script>
+{% endjavascripts %}
+<script>
+$(function () {
+
+});
+</script>
+{% block javascripts %}{% endblock %}
+
+</body></html>{{ '' -}}
