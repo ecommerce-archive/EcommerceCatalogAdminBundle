@@ -1,0 +1,24 @@
+{
+    "name": "ecommerce/catalog-admin-bundle",
+    "type": "symfony-bundle",
+    "description": "Ecommerce Catalog Admin Bundle for Symfony",
+    "keywords": ["ecommerce", "shop", "catalog", "product", "admin"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Philipp Wahala",
+            "email": "philipp.wahala@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "symfony/framework-bundle": "~2.3",
+        "ecommerce/catalog-bundle": "dev-master"
+    },
+    "autoload":{
+        "psr-0":{
+            "Ecommerce\\Bundle\\CatalogAdminBundle": ""
+        }
+    },
+    "target-dir": "Ecommerce/Bundle/CatalogAdminBundle"
+}
