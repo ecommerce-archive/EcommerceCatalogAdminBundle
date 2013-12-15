@@ -6,17 +6,14 @@
 
     <route id="ecommerce_catalog_admin_products" pattern="/products/">
         <default key="_controller">ecommerce_catalog_admin.product_controller:indexAction</default>
-        <!--<default key="_controller">EcommerceCatalogAdminBundle:Product:index</default>-->
     </route>
 
     <route id="ecommerce_catalog_admin_product_create" pattern="/products/add" methods="GET">
         <default key="_controller">ecommerce_catalog_admin.product_controller:addAction</default>
-        <!--<default key="_controller">EcommerceCatalogAdminBundle:Product:add</default>-->
     </route>
 
     <route id="ecommerce_catalog_admin_product_add" pattern="/products/add" methods="POST">
         <default key="_controller">ecommerce_catalog_admin.product_controller:addAction</default>
-        <!--<default key="_controller">EcommerceCatalogAdminBundle:Product:add</default>-->
     </route>
 
     <route id="ecommerce_catalog_admin_product_edit" pattern="/products/{id}/edit" methods="GET">

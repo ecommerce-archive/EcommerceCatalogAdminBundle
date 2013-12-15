@@ -2,21 +2,19 @@
 
 namespace Ecommerce\Bundle\CatalogAdminBundle\Controller;
 
-use Ecommerce\Bundle\CatalogBundle\Form\GroupedForm;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 
 // move to service
 use Symfony\Component\Form\FormBuilder;
 use Ecommerce\Bundle\CatalogBundle\Doctrine\Phpcr\Product;
 use Ecommerce\Bundle\CatalogBundle\Form\DataMapper\NodeDataMapper;
+use Ecommerce\Bundle\CatalogBundle\Form\GroupedForm;
 // testing!!
 use Doctrine\ODM\PHPCR\DocumentManager;
-use Jackalope\Node;
 use Doctrine\ODM\PHPCR\Document\Generic;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Yaml\Yaml;
 
 class ProductController extends Controller
 {
@@ -171,8 +169,6 @@ class ProductController extends Controller
 
         $formGroups = array();
 
-//        $data = Yaml::parse($this->get('service_container')->getParameter('kernel.root_dir').'/config/ecommerce/properties.yml');
-//        $data = Yaml::parse($this->get('service_container')->getParameter('kernel.root_dir').'/config/ecommerce/properties.yml');
         $data = $this->get('ecommerce_catalog.product_properties_registry')->getProperties();
 
 
